@@ -9,10 +9,10 @@ import {
 import RowPlaceSuggestion from '../RowPlaceSuggestion';
 import Colors from '../../constants/Colors';
 import {LatLng} from 'react-native-maps';
-import {GOOGLE_API_KEY} from '../../environments';
+import {API_GOOGLE_MAPS_KEY} from '@env';
 
 const initQuery = {
-  key: GOOGLE_API_KEY,
+  key: API_GOOGLE_MAPS_KEY,
   language: 'ua',
 };
 
@@ -33,6 +33,8 @@ const InputAutoComplete = forwardRef(
     } = props;
 
     const [isFocused, setIsFocused] = useState(false);
+
+    console.log(API_GOOGLE_MAPS_KEY);
 
     return (
       <GooglePlacesAutocomplete

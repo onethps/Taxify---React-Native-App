@@ -1,8 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {FC} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {RequestStatusType} from '../screens/VerificationScreen';
+
 import Colors from '../constants/Colors';
+import {RequestStatusType} from '../screens/VerificationScreen';
 
 interface ResendTimerProps {
   activeResend: boolean;

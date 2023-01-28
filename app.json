@@ -6,7 +6,6 @@
     "orientation": "portrait",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
-    "ios.config.googleMapsApiKey": "AIzaSyC-z-p6zSGINUAnbqPw74Up3ICAeAWYwl0" ,
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
@@ -24,6 +23,8 @@
     },
     "web": {
     }
+
+    
 
   }
 }

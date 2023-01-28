@@ -1,17 +1,16 @@
 import {StyleSheet, View} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import MapView, {LatLng, PROVIDER_GOOGLE} from 'react-native-maps';
-
-import {GOOGLE_API_KEY} from '../environments';
 import StyledBottomSheet from '../components/StyledBottomSheet';
 import {useGeoLocation} from '../hooks/useGeoLocation';
 import MapViewDirections, {
   MapViewDirectionsOrigin,
 } from 'react-native-maps-directions';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import BottomSheet from '@gorhom/bottom-sheet';
 import HeaderBottomSheet from '../components/HeaderBottomSheet';
 import {useSharedValue} from 'react-native-reanimated';
+import {API_GOOGLE_MAPS_KEY} from '@env';
 
 const MapScreen = () => {
   const mapViewRef = useRef<MapView>(null);
@@ -54,7 +53,7 @@ const MapScreen = () => {
           <MapViewDirections
             origin={origin}
             destination={destination}
-            apikey={GOOGLE_API_KEY}
+            apikey={API_GOOGLE_MAPS_KEY}
             strokeWidth={3}
             strokeColor="black"
           />

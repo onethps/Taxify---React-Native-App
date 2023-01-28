@@ -15,7 +15,7 @@ const VerificationScreen = () => {
   //resend timer
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [targetTime, setTargetTime] = useState<number | null>(null);
-  const [activeResend, setActiveResend] = useState(false);
+  const [activeResend, setActiveResend] = useState<boolean>(false);
 
   const [resendingCode, setResendingCode] = useState(false);
   const [resendStatus, setResendStatus] = useState<RequestStatusType>('Resend');
