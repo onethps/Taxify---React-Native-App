@@ -4,11 +4,10 @@
     "slug": "taxify",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "ios.config.googleMapsApiKey": "AIzaSyC-z-p6zSGINUAnbqPw74Up3ICAeAWYwl0" ,
     "splash": {
-      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,13 +21,9 @@
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
     },
     "web": {
-      "favicon": "./assets/images/favicon.png"
     }
+
   }
 }
