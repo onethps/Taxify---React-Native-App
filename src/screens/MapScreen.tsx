@@ -1,16 +1,16 @@
-import {StyleSheet, View} from 'react-native';
+import {API_GOOGLE_MAPS_KEY} from '@env';
+import BottomSheet from '@gorhom/bottom-sheet';
 import React, {useEffect, useRef, useState} from 'react';
+import {StyleSheet, View} from 'react-native';
 import MapView, {LatLng, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapViewDirections from 'react-native-maps-directions';
+import {useSharedValue} from 'react-native-reanimated';
+
+import HeaderInputsContainer from '../components/HeaderInputsContainer';
 import StyledBottomSheet from '../components/StyledBottomSheet';
 import {useGeoLocation} from '../hooks/useGeoLocation';
-import MapViewDirections, {
-  MapViewDirectionsOrigin,
-} from 'react-native-maps-directions';
-import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-import BottomSheet from '@gorhom/bottom-sheet';
-import HeaderBottomSheet from '../components/HeaderBottomSheet';
-import {useSharedValue} from 'react-native-reanimated';
-import {API_GOOGLE_MAPS_KEY} from '@env';
+
+const EDGE_PADDING_VALUE = 70;
 
 const MapScreen = () => {
   const mapViewRef = useRef<MapView>(null);
@@ -24,20 +24,27 @@ const MapScreen = () => {
 
   const handleCollapseBottomSheet = () => bottomSheetRef.current?.collapse();
 
-  const edgePaddingValue = 70;
-  const edgePadding = {
-    top: edgePaddingValue,
-    right: edgePaddingValue,
-    bottom: edgePaddingValue,
-    left: edgePaddingValue,
-  };
+  const triggerMapDirections = () => {
+    const edgePadding = {
+      top: EDGE_PADDING_VALUE,
+      right: EDGE_PADDING_VALUE,
+      bottom: EDGE_PADDING_VALUE,
+      left: EDGE_PADDING_VALUE,
+    };
 
-  useEffect(() => {
     if (origin && destination) {
       mapViewRef.current?.fitToCoordinates([origin, destination], {
         edgePadding,
       });
     }
+  };
+
+  useEffect(() => {
+    setOrigin(location);
+  }, [location]);
+
+  useEffect(() => {
+    triggerMapDirections();
   }, [origin, destination]);
 
   return (
@@ -59,7 +66,7 @@ const MapScreen = () => {
           />
         ) : null}
       </MapView>
-      <HeaderBottomSheet
+      <HeaderInputsContainer
         bottomSheetAnimatedIndex={bottomSheetAnimatedIndex}
         handleCollapseBottomSheet={handleCollapseBottomSheet}
         setOrigin={setOrigin}

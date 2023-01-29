@@ -1,20 +1,15 @@
-import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {Children, FC, ReactNode, Ref, RefObject, useRef} from 'react';
-import Animated, {
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-} from 'react-native-reanimated';
-import Layout from '../constants/Layout';
+import React, {FC, RefObject, useEffect, useRef} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {GooglePlacesAutocompleteRef} from 'react-native-google-places-autocomplete';
+import {LatLng} from 'react-native-maps';
+import Animated, {useAnimatedStyle} from 'react-native-reanimated';
+
 import CloseIcon from '../assets/close.svg';
 import PlusIcon from '../assets/plus.svg';
-import {GooglePlacesAutocompleteRef} from 'react-native-google-places-autocomplete';
+import Layout from '../constants/Layout';
 import InputAutoComplete from './shared/InputAutoComplete';
-import {LatLng} from 'react-native-maps';
-import {MapViewDirectionsOrigin} from 'react-native-maps-directions';
 
-export const MODAL_HEIGHT = 200;
+export const HEADER_HEIGHT = 200;
 
 interface HeaderModalProps {
   bottomSheetAnimatedIndex: Animated.SharedValue<number>;
@@ -23,7 +18,7 @@ interface HeaderModalProps {
   setDestination: (v: LatLng | null) => void;
 }
 
-const HeaderBottomSheet: FC<HeaderModalProps> = ({
+const HeaderInputsContainer: FC<HeaderModalProps> = ({
   bottomSheetAnimatedIndex,
   handleCollapseBottomSheet,
   setOrigin,
@@ -32,13 +27,17 @@ const HeaderBottomSheet: FC<HeaderModalProps> = ({
   const originInputRef = useRef<GooglePlacesAutocompleteRef>(null);
   const destinationInputRef = useRef<GooglePlacesAutocompleteRef>(null);
 
+  useEffect(() => {
+    originInputRef.current?.setAddressText('My location');
+  }, []);
+
   const headerStyle = useAnimatedStyle(() => {
     return {
-      top: -MODAL_HEIGHT,
+      top: -HEADER_HEIGHT,
       transform: [
         {
           translateY:
-            (MODAL_HEIGHT / 100) * (bottomSheetAnimatedIndex.value * 100),
+            (HEADER_HEIGHT / 100) * (bottomSheetAnimatedIndex.value * 100),
         },
       ],
     };
@@ -85,7 +84,7 @@ const HeaderBottomSheet: FC<HeaderModalProps> = ({
   );
 };
 
-export default HeaderBottomSheet;
+export default HeaderInputsContainer;
 
 const styles = StyleSheet.create({
   container: {
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'absolute',
     zIndex: 5,
-    height: MODAL_HEIGHT,
+    height: HEADER_HEIGHT,
     width: Layout.window.width,
     backgroundColor: 'white',
     paddingHorizontal: 20,

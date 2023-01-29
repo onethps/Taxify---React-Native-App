@@ -1,15 +1,19 @@
+import {API_GOOGLE_MAPS_KEY} from '@env';
+import * as Location from 'expo-location';
+import {LocationObject} from 'expo-location';
+import React, {Ref, forwardRef, useState} from 'react';
+import {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
-import React, {forwardRef, Ref, useState} from 'react';
 import {
-  GooglePlacesAutocomplete,
-  GooglePlaceData,
   DescriptionRow,
+  GooglePlaceData,
+  GooglePlacesAutocomplete,
   GooglePlacesAutocompleteRef,
 } from 'react-native-google-places-autocomplete';
-import RowPlaceSuggestion from '../RowPlaceSuggestion';
-import Colors from '../../constants/Colors';
 import {LatLng} from 'react-native-maps';
-import {API_GOOGLE_MAPS_KEY} from '@env';
+
+import {Colors} from '../../constants/Colors';
+import RowPlaceSuggestion from '../RowPlaceSuggestion';
 
 const initQuery = {
   key: API_GOOGLE_MAPS_KEY,
@@ -34,12 +38,13 @@ const InputAutoComplete = forwardRef(
 
     const [isFocused, setIsFocused] = useState(false);
 
-    console.log(API_GOOGLE_MAPS_KEY);
+    const [status, requestPermission] = Location.useBackgroundPermissions();
 
     return (
       <GooglePlacesAutocomplete
         ref={ref}
         query={initQuery}
+        listViewDisplayed="auto"
         placeholder={placeholder}
         styles={isFocused ? focusedInputStyle : defaultInputStyle}
         fetchDetails={true}
@@ -49,7 +54,6 @@ const InputAutoComplete = forwardRef(
               latitude: details.geometry.location.lat,
               longitude: details.geometry.location.lng,
             };
-            // console.log(newCoords);
             setCoords(newCoords);
           }
 
@@ -66,6 +70,7 @@ const InputAutoComplete = forwardRef(
         nearbyPlacesAPI="GooglePlacesSearch"
         textInputProps={{
           autoFocus: autofocus,
+          returnKeyType: 'search',
           onChangeText: () => setCoords(null),
           onFocus: () => setIsFocused(true),
           onBlur: () => setIsFocused(false),
@@ -108,7 +113,7 @@ export const focusedInputStyle = StyleSheet.create({
     color: '#5d5d5d',
     fontSize: 16,
     backgroundColor: 'white',
-    borderColor: Colors.greenLight,
+    borderColor: Colors.lightGreen,
     borderWidth: 2,
   },
   predefinedPlacesDescription: {

@@ -1,12 +1,13 @@
+import React, {FC, ReactNode} from 'react';
 import {
+  Keyboard,
   KeyboardAvoidingView,
   ScrollView,
   StyleSheet,
-  Keyboard,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React, {FC, ReactNode} from 'react';
+
 import {statusBarHeight} from '../../constants/Layout';
 
 interface KeyboardAvoidingViewWrapperProps {
@@ -28,12 +29,3 @@ const KeyboardAvoidingViewWrapper: FC<KeyboardAvoidingViewWrapperProps> = ({
 };
 
 export default KeyboardAvoidingViewWrapper;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 25,
-    paddingTop: statusBarHeight + 30,
-    backgroundColor: 'yellow',
-  },
-});

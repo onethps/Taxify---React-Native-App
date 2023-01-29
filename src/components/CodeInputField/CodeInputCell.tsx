@@ -1,5 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React, {FC} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+
+import {Colors} from '../../constants/Colors';
 
 interface CodeInputCellProps {
   code: string;
@@ -28,10 +30,7 @@ const CodeInputCell: FC<CodeInputCellProps> = ({
 
   return (
     <View
-      style={[
-        styles.codeInput,
-        styledFocusedInput ? styles.codeInputFocused : styles.codeInput,
-      ]}>
+      style={[styles.codeInput, styledFocusedInput && styles.codeInputFocused]}>
       <Text style={styles.codeInputText}>{digit}</Text>
     </View>
   );
@@ -41,17 +40,19 @@ export default CodeInputCell;
 
 const styles = StyleSheet.create({
   codeInput: {
-    minWidth: '15%',
-    borderWidth: 2,
-    borderColor: 'yellow',
-    borderRadius: 5,
-    padding: 12,
+    width: 55,
+    height: 60,
+    backgroundColor: Colors.white,
+    borderRadius: 20,
+    opacity: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   codeInputFocused: {
-    borderColor: 'red',
+    opacity: 1,
   },
   codeInputText: {
-    fontSize: 22,
+    fontSize: 36,
     fontWeight: 'bold',
     textAlign: 'center',
     color: 'green',

@@ -1,7 +1,7 @@
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
-
-export default {
+export const Colors = {
   primary: '#f4f4f6',
-  greenLight: '#00b668',
+  white: '#ffffff',
+  lightGreen: '#00b668',
+  lightGrey: '#dae2e7',
+  semiGreen: '#ddfcda',
 };

@@ -1,6 +1,7 @@
-import {Pressable, StyleSheet, Text, TextInputProps, View} from 'react-native';
 import React, {ComponentType, FC, useEffect, useRef, useState} from 'react';
+import {Pressable, StyleSheet, Text, TextInputProps, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
+
 import CodeInputCell from './CodeInputCell';
 
 interface CodeInputFieldProps {
@@ -34,6 +35,10 @@ const CodeInputField: FC<CodeInputFieldProps> = ({
   }, [code]);
 
   const handleOnBlur = () => setInputContainerFocused(false);
+
+  useEffect(() => {
+    handleOnPress();
+  }, []);
 
   return (
     <View style={styles.codeInputSection}>
@@ -69,15 +74,15 @@ export default CodeInputField;
 
 const styles = StyleSheet.create({
   codeInputSection: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 30,
   },
   codeInputsContainer: {
-    width: '70%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '100%',
   },
   hiddenTextInput: {
     position: 'absolute',

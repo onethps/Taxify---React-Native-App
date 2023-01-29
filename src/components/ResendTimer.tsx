@@ -1,8 +1,8 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React, {FC} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-import Colors from '../constants/Colors';
+import {Colors} from '../constants/Colors';
 import {RequestStatusType} from '../screens/VerificationScreen';
 
 interface ResendTimerProps {
@@ -25,12 +25,12 @@ const ResendTimer: FC<ResendTimerProps> = ({
       <View style={styles.inlineGroup}>
         {activeResend ? (
           <TouchableOpacity style={styles.textLink}>
-            <Text style={styles.textLinkContent}>Надіслати код</Text>
+            <Text style={styles.textLinkContent}>Send code again</Text>
           </TouchableOpacity>
         ) : (
           <View style={styles.inlineGroup}>
-            <Text>Надіслати код повторно </Text>
-            <Text>{timeLeft || targetTime}</Text>
+            <Text>Send code again after: </Text>
+            <Text style={styles.textLinkContent}>{timeLeft || targetTime}</Text>
           </View>
         )}
       </View>
@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
   textLinkContent: {
     fontSize: 15,
     fontWeight: 'bold',
-    color: Colors.greenLight,
+    color: 'black',
+    opacity: 0.7,
   },
   inlineGroup: {
     flexDirection: 'row',

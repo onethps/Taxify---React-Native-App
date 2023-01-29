@@ -1,8 +1,8 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {forwardRef, Ref, useCallback, useMemo} from 'react';
-import {useRef} from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
 import {BottomSheetMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
+import React, {Ref, forwardRef, useCallback, useMemo} from 'react';
+import {useRef} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import Animated from 'react-native-reanimated';
 
 interface StyledBottomSheetProps {

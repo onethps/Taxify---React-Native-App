@@ -1,6 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import {GooglePlaceData} from 'react-native-google-places-autocomplete';
+
 import MarkerIcon from '../assets/marker.svg';
 
 interface IRowPlaceSuggestionProps {
